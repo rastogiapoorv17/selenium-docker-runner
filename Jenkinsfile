@@ -11,10 +11,13 @@ pipeline{
           sh "docker-compose up search-module"
                           }
          }
-         stage("Bring Grid Down"){
-          steps{
-          sh "docker-compose down"
-          }
-        }
+         
      }
+                post{
+                  always{
+                    archieveArtifacts artifacts: 'output/**'
+                      sh "docker-compose down"
+                  }
+                } 
+               
  }
