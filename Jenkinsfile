@@ -1,7 +1,12 @@
 pipeline{
   agent any
     stages{
-      stage("Start Grod){
+      stage("Pulls Latest Image){
+           steps{
+          sh "docker pull rastogiapoorv/seleniumdocker"
+                          }
+         }
+      stage("Start Grid){
            steps{
           sh "docker-compose up -d hub chrome firefox"
                           }
